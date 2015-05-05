@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+//-->
+</script>
+</head>
+<body>
+
+<!-- ヘッダ部分の定義 -->
+<table cellspacing="0">
+<tr id="header">
+<td id="headerlogo" rowspan=2>
+<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>logo.gif"></a>
+</td>
+<td id="headerr1">&nbsp;</td>
+</tr>
+
+<tr>
+<{if !$xoops_isuser}>
+<td id="headerr2">
+	<form action="<{$xoops_url}>/user.php" method="post" style="margin:0px;">ログイン 
+	<input type="text" name="uname" value="username" size=12 onMouseOver="this.focus();" onFocus="if(this.value == 'username') this.value = '';" style="font-size:11px; padding:0px;">
+	パスワード <input type="password" size="12" name="pass" style="font-size:10px; padding:0px;">
+	<input type="hidden" name="op" value="login"> 
+	<input type="submit" value="OK">
+	&nbsp;&nbsp;<a href="<{$xoops_url}>/register.php">新規登録</a>&nbsp;&nbsp;
+</td>
+</form>
+
+<{else}>
+
+<td id="headerr2">
+	<a href="<{$xoops_url}>/user.php">アカウント情報</a> | <a href="<{$xoops_url}>/notifications.php">イベント通知</a> | <a href="<{$xoops_url}>/viewpmsg.php">受信箱<{if $ex_new_messages}>(<{$ex_new_messages}>)<{/if}></a> | <a href="<{$xoops_url}>/user.php?op=logout">ログアウト</a>
+	<{if $xoops_isadmin}>| <a href="<{$xoops_url}>/admin.php">管理</a><{/if}>&nbsp;&nbsp;
+</td>
+</tr>
+<{/if}>
+
+</td>
+</tr>
+
+</table>
+<!-- ヘッダ部分終わり -->
+<br>
+
+<table cellspacing="0">
+    <tr>
+	<!-- 左ブロック部分の定義 -->
+      <td id="leftcolumn">
+        <{foreach item=block from=$xoops_lblocks}>
+		<{if $block.title|regex_replace:"/.*none/":"none" ne "none"}>
+		<div class="blockTitle"><img src="<{$xoops_imageurl}>point.gif"> <{$block.title}></div>
+		<{/if}>
+		<div class="blockContent"><{$block.content}></div>
+        <{/foreach}>
+		</td>
+    <!-- 左ブロック終わり -->
+
+
+      <td id="centercolumn">
+
+        <!-- Display center blocks if any -->
+        <{if $xoops_showcblock == 1}>
+
+        <table cellspacing="0">
+          <tr>
+          <!-- 中央-中央ブロック部分の定義 -->
+            <td id="centerCcolumn" colspan="2">
+            <{foreach item=block from=$xoops_ccblocks}>
+			<div style="padding: 5px;">
+			<{if $block.title|regex_replace:"/.*none/":"none" ne "none"}>
+			<div class="blockTitle"><img src="<{$xoops_imageurl}>point.gif"> <{$block.title}></div>
+			<{/if}>
+			<div class="blockContent"><{$block.content}></div>
+			</div>
+            <{/foreach}>
+            </td>
+          <!-- 中央-中央ブロック部分終わり -->
+          </tr>
+          <tr>
+
+          <!-- 中央-左ブロック部分の定義 -->
+            <td id="centerLcolumn">
+            <{foreach item=block from=$xoops_clblocks}>
+				<div style="padding: 0px 0px 0px 8px;">
+			<{if $block.title|regex_replace:"/.*none/":"none" ne "none"}>
+				<div class="blockTitle"><img src="<{$xoops_imageurl}>point.gif"> <{$block.title}></div>
+			<{/if}>
+				<div class="blockContent"><{$block.content}></div>
+				</div>
+            <{/foreach}>
+            </td>
+          <!-- 中央-左ブロック部分終わり -->
+
+
+          <!-- 中央-右ブロック部分の定義 -->
+			<td id="centerRcolumn">
+              <{foreach item=block from=$xoops_crblocks}>
+				<div style="padding: 0px 5px 0px 0px;">
+			<{if $block.title|regex_replace:"/.*none/":"none" ne "none"}>
+				<div class="blockTitle"><img src="<{$xoops_imageurl}>point.gif"> <{$block.title}></div>
+			<{/if}>
+				<div class="blockContent"><{$block.content}></div>
+				</div>
+              <{/foreach}>
+            </td>
+          <!-- 中央-右ブロック部分終わり -->
+          </tr>
+        </table>
+
+        <{/if}>
+        <!-- End display center blocks -->
+
+        <div id="content">
+          <{$xoops_contents}>
+        </div>
+      </td>
+
+      <{if $xoops_showrblock == 1}>
+
+      <!-- 右ブロック部分の定義 -->
+      <td id="rightcolumn">
+        <{foreach item=block from=$xoops_rblocks}>
+			<{if $block.title|regex_replace:"/.*none/":"none" ne "none"}>
+			<div class="blockTitle"><img src="<{$xoops_imageurl}>point.gif"> <{$block.title}></div>
+			<{/if}>
+			<div class="blockContent"><{$block.content}></div>
+        <{/foreach}>
+      </td>
+      <!-- 右ブロック部分終わり -->
+
+      <{/if}>
+
+
+    </tr>
+</table>
+
+<!-- フッタ部分の定義 -->
+<table cellspacing="0">
+<tr>
+<td id="footerbar">
+<br>Powered by <a href="http://www.xoops.org/" target="_blank">XOOPS</a> ◇ Theme designed by <a href="http://www.oceannet.jp" target=_blank>OCEAN-NET</a> ◇ Copyright (c) 2004 All rights reserved.&nbsp;<br>
+</td>
+</tr>
+</table>
+<!-- フッタ部分終わり -->
+
+</body>
+</html>
